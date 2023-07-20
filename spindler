@@ -1,0 +1,18 @@
+# engine/model/spindler.py
+
+class Spindler:
+    def __init__(self, last_service_date, current_mileage, last_service_mileage, battery_level):
+        self.last_service_date = last_service_date
+        self.current_mileage = current_mileage
+        self.last_service_mileage = last_service_mileage
+        self.battery_level = battery_level
+
+    def needs_service(self):
+        return self.is_battery_low() or self.is_engine_overdue()
+
+    def is_battery_low(self):
+        return self.battery_level < 30
+
+    def is_engine_overdue(self):
+        days_since_service = (datetime.today().date() - self.last_service_date).days
+        return days_since_service >= 365 or self.current_mileage - self.last_service_mileage >= 30000

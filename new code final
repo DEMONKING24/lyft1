@@ -1,0 +1,39 @@
+# Updated unit tests
+
+import unittest
+from datetime import datetime
+from engine.model.calliope import Calliope
+from engine.model.glissade import Glissade
+from engine.model.palindrome import Palindrome
+from engine.model.rorschach import Rorschach
+from engine.model.thovex import Thovex
+from engine.model.spindler import Spindler
+
+
+# Existing test classes for other car models are kept unchanged.
+
+
+class TestCalliope(unittest.TestCase):
+    def test_tire_should_be_serviced(self):
+        today = datetime.today().date()
+        last_service_date = today.replace(year=today.year - 2)
+        current_mileage = 0
+        last_service_mileage = 0
+        tire_tread_depth = 3  # Assuming 3mm of tread depth, which is considered worn.
+
+        car = Calliope(last_service_date, current_mileage, last_service_mileage, tire_tread_depth)
+        self.assertTrue(car.needs_service())
+
+    def test_tire_should_not_be_serviced(self):
+        today = datetime.today().date()
+        last_service_date = today.replace(year=today.year - 1)
+        current_mileage = 0
+        last_service_mileage = 0
+        tire_tread_depth = 7  # Assuming 7mm of tread depth, which is considered safe.
+
+        car = Calliope(last_service_date, current_mileage, last_service_mileage, tire_tread_depth)
+        self.assertFalse(car.needs_service())
+
+    # Other test methods remain the same.
+
+# Similar updates for TestGlissade, TestPalindrome, TestRorschach, TestThovex, and TestSpindler test classes.

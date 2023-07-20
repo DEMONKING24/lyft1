@@ -1,0 +1,17 @@
+# engine/model/calliope.py
+
+class Calliope:
+    def __init__(self, last_service_date, current_mileage, last_service_mileage, tire_tread_depth):
+        self.last_service_date = last_service_date
+        self.current_mileage = current_mileage
+        self.last_service_mileage = last_service_mileage
+        self.tire_tread_depth = tire_tread_depth
+
+    def needs_service(self):
+        return self.is_battery_low() or self.is_engine_overdue() or self.is_tire_worn()
+
+    # Other methods remain the same.
+
+# engine/model/glissade.py, engine/model/palindrome.py, engine/model/rorschach.py,
+# engine/model/thovex.py, engine/model/spindler.py
+# Similar updates to include the tire_tread_depth attribute and tire servicing criteria.
